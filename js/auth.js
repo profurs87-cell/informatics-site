@@ -1,3 +1,7 @@
+// ============================================
+// АВТОРИЗАЦИЯ С ПЕРЕНАПРАВЛЕНИЕМ НА СТРАНИЦУ ПАРАЛЛЕЛИ
+// ============================================
+
 async function loadClasses() {
     try {
         const response = await fetch('data/classes.json');
@@ -21,17 +25,19 @@ function verifyCredentials(classesData, inputLogin, inputPassword) {
         return { 
             success: true, 
             className: classInfo.name,
-            classId: normalizedLogin
+            classId: normalizedLogin,
+            page: classInfo.page
         };
     }
     
     return { success: false, message: 'Неверный пароль' };
 }
 
-function saveSession(classId, className) {
+function saveSession(classId, className, page) {
     const sessionData = {
         classId: classId,
         className: className,
+        page: page,
         loginTime: new Date().toISOString()
     };
     sessionStorage.setItem('auth', JSON.stringify(sessionData));
@@ -47,20 +53,23 @@ function checkAuth() {
     }
 }
 
-function requireAuth() {
+// Проверка авторизации + соответствие класса странице
+function requireAuth(expectedPage) {
     const auth = checkAuth();
+    
     if (!auth) {
         window.location.href = 'login.html';
         return null;
     }
+    
+    // Проверяем, что класс имеет доступ к этой странице
+    if (auth.page !== expectedPage) {
+        // Перенаправляем на правильную страницу
+        window.location.href = auth.page;
+        return null;
+    }
+    
     return auth;
-}
-
-// ⭐ НОВАЯ ФУНКЦИЯ: Редирект на страницу класса
-function redirectToClassPage(classId) {
-    const classNumber = classId.replace(/[^0-9]/g, ''); // Извлекаем число: "7a" → "7"
-    const targetPage = `materials-${classNumber}.html`;
-    window.location.href = targetPage;
 }
 
 function logout() {
