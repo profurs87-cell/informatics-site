@@ -1,7 +1,3 @@
-// ============================================
-// АВТОРИЗАЦИЯ: ЛОГИН + УНИКАЛЬНЫЙ ПАРОЛЬ
-// ============================================
-
 async function loadClasses() {
     try {
         const response = await fetch('data/classes.json');
@@ -13,7 +9,6 @@ async function loadClasses() {
     }
 }
 
-// Проверка логина и пароля
 function verifyCredentials(classesData, inputLogin, inputPassword) {
     const normalizedLogin = inputLogin.trim().toLowerCase();
     const classInfo = classesData[normalizedLogin];
@@ -22,7 +17,6 @@ function verifyCredentials(classesData, inputLogin, inputPassword) {
         return { success: false, message: 'Класс с таким логином не найден' };
     }
     
-    // Пароль чувствителен к регистру (большие и маленькие буквы важны)
     if (inputPassword.trim() === classInfo.password) {
         return { 
             success: true, 
@@ -60,6 +54,13 @@ function requireAuth() {
         return null;
     }
     return auth;
+}
+
+// ⭐ НОВАЯ ФУНКЦИЯ: Редирект на страницу класса
+function redirectToClassPage(classId) {
+    const classNumber = classId.replace(/[^0-9]/g, ''); // Извлекаем число: "7a" → "7"
+    const targetPage = `materials-${classNumber}.html`;
+    window.location.href = targetPage;
 }
 
 function logout() {
