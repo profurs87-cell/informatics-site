@@ -1,8 +1,7 @@
 // ============================================
-// АВТОРИЗАЦИЯ ПО КОДАМ КЛАССОВ
+// АВТОРИЗАЦИЯ: ЛОГИН + УНИКАЛЬНЫЙ ПАРОЛЬ
 // ============================================
 
-// Загрузка списка классов из JSON
 async function loadClasses() {
     try {
         const response = await fetch('data/classes.json');
@@ -14,24 +13,27 @@ async function loadClasses() {
     }
 }
 
-// Проверка введённого кода
-function verifyCode(classesData, classId, inputCode) {
-    const classInfo = classesData[classId];
-    if (!classInfo) return { success: false, message: 'Класс не найден' };
+// Проверка логина и пароля
+function verifyCredentials(classesData, inputLogin, inputPassword) {
+    const normalizedLogin = inputLogin.trim().toLowerCase();
+    const classInfo = classesData[normalizedLogin];
     
-    const normalizedInput = inputCode.trim().toUpperCase();
-    const normalizedCode = classInfo.code.trim().toUpperCase();
+    if (!classInfo) {
+        return { success: false, message: 'Класс с таким логином не найден' };
+    }
     
-    if (normalizedInput === normalizedCode) {
+    // Пароль чувствителен к регистру (большие и маленькие буквы важны)
+    if (inputPassword.trim() === classInfo.password) {
         return { 
             success: true, 
-            className: classInfo.name 
+            className: classInfo.name,
+            classId: normalizedLogin
         };
     }
-    return { success: false, message: 'Неверный код доступа' };
+    
+    return { success: false, message: 'Неверный пароль' };
 }
 
-// Сохранение сессии ученика
 function saveSession(classId, className) {
     const sessionData = {
         classId: classId,
@@ -41,7 +43,6 @@ function saveSession(classId, className) {
     sessionStorage.setItem('auth', JSON.stringify(sessionData));
 }
 
-// Проверка: авторизован ли пользователь
 function checkAuth() {
     const auth = sessionStorage.getItem('auth');
     if (!auth) return null;
@@ -52,7 +53,6 @@ function checkAuth() {
     }
 }
 
-// Требовать авторизацию (для защищённых страниц)
 function requireAuth() {
     const auth = checkAuth();
     if (!auth) {
@@ -62,14 +62,7 @@ function requireAuth() {
     return auth;
 }
 
-// Выход
 function logout() {
     sessionStorage.removeItem('auth');
-    window.location.href = 'index.html';
-}
-
-// Получить класс из URL (например, login.html?class=7a)
-function getClassFromURL() {
-    const params = new URLSearchParams(window.location.search);
-    return params.get('class');
+    window.location.href = 'login.html';
 }
