@@ -1,0 +1,223 @@
+/* ============================================
+   БАЗОВЫЕ ПЕРЕМЕННЫЕ И СБРОС
+   ============================================ */
+:root {
+    --bg-primary: #1a1d23;
+    --bg-secondary: #242831;
+    --bg-card: #2a2f3a;
+    --accent: #4a9eff;
+    --accent-hover: #3a8eef;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a8b5;
+    --error: #ff5a5a;
+    --success: #4aff8b;
+    --border: #3a3f4a;
+    --radius: 8px;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* ============================================
+   СТРАНИЦА ВХОДА
+   ============================================ */
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(74, 158, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(74, 158, 255, 0.05) 0%, transparent 50%),
+        var(--bg-primary);
+}
+
+.login-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 40px;
+    max-width: 480px;
+    width: 100%;
+    box-shadow: var(--shadow);
+}
+
+.login-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.login-subtitle {
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 32px;
+    font-size: 14px;
+}
+
+/* Выбор класса */
+.class-selector {
+    margin-bottom: 24px;
+}
+
+.class-selector-label {
+    display: block;
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+
+.class-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.class-btn {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    padding: 12px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.class-btn:hover {
+    border-color: var(--accent);
+    background: var(--bg-card);
+}
+
+.class-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+/* Поле ввода кода */
+.code-input-group {
+    margin-bottom: 24px;
+}
+
+.code-input-label {
+    display: block;
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.code-input {
+    width: 100%;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    padding: 14px 16px;
+    border-radius: var(--radius);
+    font-size: 16px;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: border-color 0.2s ease;
+}
+
+.code-input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.code-input::placeholder {
+    color: var(--text-secondary);
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+/* Кнопка входа */
+.login-btn {
+    width: 100%;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: var(--radius);
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.login-btn:hover {
+    background: var(--accent-hover);
+}
+
+.login-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Сообщение об ошибке */
+.error-message {
+    background: rgba(255, 90, 90, 0.1);
+    border: 1px solid var(--error);
+    color: var(--error);
+    padding: 12px;
+    border-radius: var(--radius);
+    margin-bottom: 16px;
+    font-size: 14px;
+    text-align: center;
+    display: none;
+}
+
+.error-message.show {
+    display: block;
+}
+
+/* Ссылка на главную */
+.login-footer {
+    text-align: center;
+    margin-top: 24px;
+}
+
+.login-footer a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.login-footer a:hover {
+    color: var(--accent);
+}
+
+/* ============================================
+   АДАПТИВНОСТЬ
+   ============================================ */
+@media (max-width: 600px) {
+    .login-card {
+        padding: 28px 20px;
+    }
+    
+    .login-title {
+        font-size: 20px;
+    }
+    
+    .class-buttons {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
