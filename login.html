@@ -30,7 +30,7 @@
         
         <div class="login-footer">
             <a href="index.html">← На главную страницу</a>
-        </div
+        </div>
     </div>
     
     <script src="js/auth.js"></script>
@@ -76,7 +76,8 @@
             
             if (result.success) {
                 saveSession(result.classId, result.className);
-                window.location.href = 'materials.html';
+                // ⭐ РЕДИРЕКТ НА СТРАНИЦУ КЛАССА
+                redirectToClassPage(result.classId);
             } else {
                 showError(result.message);
                 passwordInput.value = '';
@@ -93,7 +94,6 @@
             errorMessage.classList.remove('show');
         }
 
-        // Показать/скрыть пароль
         document.getElementById('togglePassword').addEventListener('click', () => {
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
