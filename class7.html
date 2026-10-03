@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7 класс - Учебные материалы</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="class-page">
+    <div class="container">
+        <div class="class-header">
+            <div>
+                <h1>Учебные материалы <span class="class-badge" id="className">7 класс</span></h1>
+            </div>
+            <button onclick="logout()" class="logout-btn">Выйти</button>
+        </div>
+
+        <!-- Контейнер для спойлеров -->
+        <div id="spoilersContainer"></div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/materials.js"></script>
+    <script>
+        // Проверяем авторизацию для 7 класса
+        const auth = requireAuth('class7.html');
+        
+        if (auth) {
+            document.getElementById('className').textContent = auth.className;
+            
+            // Загружаем и отображаем материалы
+            loadMaterials().then(data => {
+                materialsData = data;
+                renderSpoilers('spoilersContainer', 'class7');
+            });
+        }
+    </script>
+</body>
+</html>
