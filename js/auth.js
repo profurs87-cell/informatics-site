@@ -13,31 +13,48 @@ async function loadClasses() {
     }
 }
 
-function verifyCredentials(classesData, inputLogin, inputPassword) {
+// Поиск класса по полю login (а не по ключу)
+function findClassByLogin(classesData, inputLogin) {
     const normalizedLogin = inputLogin.trim().toLowerCase();
-    const classInfo = classesData[normalizedLogin];
     
-    if (!classInfo) {
+    // Перебираем все классы и ищем совпадение по полю login
+    for (const key in classesData) {
+        const classInfo = classesData[key];
+        if (classInfo.login && classInfo.login.toLowerCase() === normalizedLogin) {
+            return { key: key, info: classInfo };
+        }
+    }
+    return null;
+}
+
+function verifyCredentials(classesData, inputLogin, inputPassword) {
+    const found = findClassByLogin(classesData, inputLogin);
+    
+    if (!found) {
         return { success: false, message: 'Класс с таким логином не найден' };
     }
+    
+    const classInfo = found.info;
     
     if (inputPassword.trim() === classInfo.password) {
         return { 
             success: true, 
             className: classInfo.name,
-            classId: normalizedLogin,
-            page: classInfo.page
+            classId: found.key,
+            page: classInfo.page,
+            materialsKey: classInfo.materialsKey
         };
     }
     
     return { success: false, message: 'Неверный пароль' };
 }
 
-function saveSession(classId, className, page) {
+function saveSession(classId, className, page, materialsKey) {
     const sessionData = {
         classId: classId,
         className: className,
         page: page,
+        materialsKey: materialsKey,
         loginTime: new Date().toISOString()
     };
     sessionStorage.setItem('auth', JSON.stringify(sessionData));
@@ -53,7 +70,6 @@ function checkAuth() {
     }
 }
 
-// Проверка авторизации + соответствие класса странице
 function requireAuth(expectedPage) {
     const auth = checkAuth();
     
@@ -62,9 +78,7 @@ function requireAuth(expectedPage) {
         return null;
     }
     
-    // Проверяем, что класс имеет доступ к этой странице
     if (auth.page !== expectedPage) {
-        // Перенаправляем на правильную страницу
         window.location.href = auth.page;
         return null;
     }
