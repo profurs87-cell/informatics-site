@@ -1,8 +1,8 @@
 {
-  "7a": {"code": "INFO7A-2026", "name": "7А класс"},
-  "7b": {"code": "INFO7B-2026", "name": "7Б класс"},
-  "8a": {"code": "INFO8A-2026", "name": "8А класс"},
-  "8b": {"code": "INFO8B-2026", "name": "8Б класс"},
-  "9a": {"code": "INFO9A-2026", "name": "9А класс"},
-  "9b": {"code": "INFO9B-2026", "name": "9Б класс"}
+  "7a": { "name": "7А класс", "login": "class7a", "password": "Kvant2026!" },
+  "7b": { "name": "7Б класс", "login": "class7b", "password": "Byte7B#24" },
+  "8a": { "name": "8А класс", "login": "class8a", "password": "Logic8A$99" },
+  "8b": { "name": "8Б класс", "login": "class8b", "password": "Code8B&77" },
+  "9a": { "name": "9А класс", "login": "class9a", "password": "Python9A*11" },
+  "9b": { "name": "9Б класс", "login": "class9b", "password": "Web9B@33" }
 }
