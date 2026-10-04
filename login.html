@@ -22,7 +22,7 @@
             <label class="input-label" for="passwordInput">Пароль</label>
             <div class="password-wrapper">
                 <input type="password" id="passwordInput" class="input-field" placeholder="Введите пароль" autocomplete="off">
-                <button type="button" class="toggle-password" id="togglePassword" title="Показать пароль">👁️</button>
+                <button type="button" class="toggle-password" id="togglePassword" title="Показать пароль">️</button>
             </div>
         </div>
         
@@ -41,24 +41,21 @@
         const loginBtn = document.getElementById('loginBtn');
         const errorMessage = document.getElementById('errorMessage');
 
-        // Загрузка данных классов
         async function init() {
             classesData = await loadClasses();
             if (!classesData) {
                 showError('Ошибка загрузки данных. Проверьте интернет.');
                 return;
             }
-            console.log('Классы загружены:', classesData);
+            console.log('✅ Классы загружены:', classesData);
         }
 
-        // Обновление состояния кнопки
         function updateButtonState() {
             const hasLogin = loginInput.value.trim().length > 0;
             const hasPassword = passwordInput.value.trim().length > 0;
             loginBtn.disabled = !(hasLogin && hasPassword);
         }
 
-        // Обработчики ввода
         loginInput.addEventListener('input', () => {
             updateButtonState();
             hideError();
@@ -69,26 +66,22 @@
             hideError();
         });
 
-        // Enter в поле пароля
         passwordInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter' && !loginBtn.disabled) {
                 attemptLogin();
             }
         });
 
-        // Enter в поле логина
         loginInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter' && !loginBtn.disabled) {
                 passwordInput.focus();
             }
         });
 
-        // Клик по кнопке
         loginBtn.addEventListener('click', attemptLogin);
 
-        // Попытка входа
         function attemptLogin() {
-            console.log('Попытка входа...');
+            console.log('🔐 Попытка входа...');
             
             if (!classesData) {
                 showError('Данные классов не загружены');
@@ -102,11 +95,13 @@
             console.log('Пароль:', password);
             
             const result = verifyCredentials(classesData, login, password);
-            console.log('Результат:', result);
+            console.log('Результат проверки:', result);
             
             if (result.success) {
-                saveSession(result.classId, result.className, result.page, result.materialsKey);
-                console.log('Сессия сохранена, переход на:', result.page);
+                console.log('✅ Успех! Сохраняем сессию...');
+                console.log('materialsFile:', result.materialsFile);
+                saveSession(result.classId, result.className, result.page, result.materialsFile);
+                console.log('🚀 Переход на:', result.page);
                 window.location.href = result.page;
             } else {
                 showError(result.message);
@@ -124,14 +119,12 @@
             errorMessage.classList.remove('show');
         }
 
-        // Показать/скрыть пароль
         document.getElementById('togglePassword').addEventListener('click', () => {
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
             document.getElementById('togglePassword').textContent = type === 'password' ? '👁️' : '🙈';
         });
 
-        // Запуск
         init();
     </script>
 </body>
