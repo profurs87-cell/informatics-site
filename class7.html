@@ -26,9 +26,8 @@
         if (auth) {
             document.getElementById('className').textContent = auth.className;
 
-            loadMaterials().then(data => {
-                materialsData = data;
-                renderSpoilers('spoilersContainer', auth.materialsKey);
+            loadMaterials(auth.materialsFile).then(lessons => {
+                renderSpoilers('spoilersContainer', lessons);
             });
         }
     </script>
