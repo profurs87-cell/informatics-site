@@ -49,5 +49,22 @@
         "alt": ""
       }
     ]
+  },
+  {
+    "id": "lesson4",
+    "topic": "Написание линейных программ",
+    "date": "05.10.2026",
+    "icon": "🐍",
+    "content": {
+      "text": "Переменная — это именованная область памяти, в которой хранятся данные. В Python не нужно объявлять тип переменной заранее.",
+      "presentation": "https://docs.google.com/presentation/d/1aLBEI1WAm3rlIY3iGbPsQdZQYbFEqBTXJOnaj4nGKIM/preview",
+      "homework": "Создать 3 переменные (имя, возраст, город) и вывести их через print()."
+    },
+    "images": [
+      {
+        "src": "",
+        "alt": ""
+      }
+    ]
   }
 ]
