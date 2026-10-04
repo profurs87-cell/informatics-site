@@ -2,7 +2,6 @@
 // ЗАГРУЗКА И ОТОБРАЖЕНИЕ МАТЕРИАЛОВ ИЗ JSON
 // ============================================
 
-// Загрузка материалов из конкретного файла
 async function loadMaterials(fileName) {
     try {
         const response = await fetch(`data/${fileName}`);
@@ -14,7 +13,6 @@ async function loadMaterials(fileName) {
     }
 }
 
-// Отрисовка спойлеров
 function renderSpoilers(containerId, lessonsArray) {
     const container = document.getElementById(containerId);
     if (!container) return;
@@ -38,14 +36,13 @@ function renderSpoilers(containerId, lessonsArray) {
             </div>
             <div class="spoiler-content">
                 <div class="spoiler-body">
-                    ${renderContent(lesson.content, lesson.images)}
+                    ${renderContent(lesson.content || {}, lesson.images || [])}
                 </div>
             </div>
         </div>
     `).join('');
 }
 
-// Отрисовка содержимого спойлера
 function renderContent(content, images) {
     let html = '';
 
@@ -74,10 +71,9 @@ function renderContent(content, images) {
         </div>`;
     }
 
-    // Отрисовка изображений
     if (images && images.length > 0) {
         html += `<div class="content-section">
-            <h3>📸 Материалы урока</h3>
+            <h3> Материалы урока</h3>
             <div class="images-gallery">
                 ${images.map(img => `
                     <div class="image-item">
@@ -91,7 +87,7 @@ function renderContent(content, images) {
 
     if (content.links && content.links.length > 0) {
         html += `<div class="content-section">
-            <h3> Полезные ссылки</h3>
+            <h3>🔗 Полезные ссылки</h3>
             <ul>
                 ${content.links.map(link => `<li><a href="${link.url}" target="_blank" rel="noopener">${link.title}</a></li>`).join('')}
             </ul>
@@ -108,13 +104,11 @@ function renderContent(content, images) {
     return html || '<p style="color: var(--text-secondary);">Материалы урока будут добавлены позже</p>';
 }
 
-// Открытие/закрытие спойлера
 function toggleSpoiler(header) {
     const spoiler = header.parentElement;
     spoiler.classList.toggle('open');
 }
 
-// Открытие изображения в модальном окне
 function openImageModal(img) {
     const modal = document.createElement('div');
     modal.className = 'image-modal';
