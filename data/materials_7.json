@@ -1,0 +1,23 @@
+[
+  {
+    "id": "lesson1",
+    "topic": "Информация и данные",
+    "date": "04.10.2026",
+    "icon": "📊",
+    "content": {
+      "text": "На этом уроке мы разберём, что такое информация, её виды и свойства. Изучите слайды презентации и скриншоты ниже.",
+      "presentation": "https://docs.google.com/presentation/d/e/2PACX-1vQcZC17N3ax7icAW6TiLgDWgeD9GiU-y9C5_dvOG3XsjNRN6qksSZIR6iVV2a81HXJ-uzGOnjcRzbdz/pubembed?start=false&loop=false&delayms=60000",
+      "homework": "Просмотреть презентацию и скриншоты, ответить на вопросы."
+    },
+    "images": [
+      {
+        "src": "lesson1_1.jpg",
+        "alt": "Скриншот 1: Виды информации"
+      },
+      {
+        "src": "lesson1_2.png",
+        "alt": "Скриншот 2: Свойства информации"
+      }
+    ]
+  }
+]
