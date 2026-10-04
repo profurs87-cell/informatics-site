@@ -14,5 +14,22 @@
         "alt": "Базовые команды для работы"
       }
     ]
+  },
+  {
+    "id": "lesson2",
+    "topic": "Переменные и типы данных в Python",
+    "date": "11.10.2026",
+    "icon": "🐍",
+    "content": {
+      "text": "Переменная — это именованная область памяти, в которой хранятся данные. В Python не нужно объявлять тип переменной заранее.",
+      "presentation": "https://docs.google.com/presentation/d/1uzsBeAWbYrKxYfLYqX5n5k8i8CP6LHKyOBJTfK0ckxg/preview",
+      "homework": "Создать 3 переменные (имя, возраст, город) и вывести их через print()."
+    },
+    "images": [
+      {
+        "src": "lesson2_screen1.jpg",
+        "alt": "Скриншот кода с переменными"
+      }
+    ]
   }
 ]
