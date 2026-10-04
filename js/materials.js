@@ -2,38 +2,29 @@
 // ЗАГРУЗКА И ОТОБРАЖЕНИЕ МАТЕРИАЛОВ ИЗ JSON
 // ============================================
 
-let materialsData = null;
-
-async function loadMaterials() {
+// Загрузка материалов из конкретного файла
+async function loadMaterials(fileName) {
     try {
-        const response = await fetch('data/materials.json');
+        const response = await fetch(`data/${fileName}`);
         if (!response.ok) throw new Error('Не удалось загрузить материалы');
         return await response.json();
     } catch (error) {
         console.error('Ошибка загрузки материалов:', error);
-        return null;
-    }
-}
-
-function getClassMaterials(materialsKey) {
-    if (!materialsData || !materialsData[materialsKey]) {
         return [];
     }
-    return materialsData[materialsKey];
 }
 
-function renderSpoilers(containerId, materialsKey) {
+// Отрисовка спойлеров
+function renderSpoilers(containerId, lessonsArray) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    const lessons = getClassMaterials(materialsKey);
-
-    if (lessons.length === 0) {
-        container.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 40px;">Материалы ещё не добавлены</p>';
+    if (!lessonsArray || lessonsArray.length === 0) {
+        container.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 40px;">Материалы ещё не добавлены учителем.</p>';
         return;
     }
 
-    container.innerHTML = lessons.map(lesson => `
+    container.innerHTML = lessonsArray.map(lesson => `
         <div class="spoiler">
             <div class="spoiler-header" onclick="toggleSpoiler(this)">
                 <div class="spoiler-title">
@@ -47,14 +38,15 @@ function renderSpoilers(containerId, materialsKey) {
             </div>
             <div class="spoiler-content">
                 <div class="spoiler-body">
-                    ${renderContent(lesson.content)}
+                    ${renderContent(lesson.content, lesson.images)}
                 </div>
             </div>
         </div>
     `).join('');
 }
 
-function renderContent(content) {
+// Отрисовка содержимого спойлера
+function renderContent(content, images) {
     let html = '';
 
     if (content.text) {
@@ -66,7 +58,7 @@ function renderContent(content) {
 
     if (content.presentation) {
         html += `<div class="content-section">
-            <h3> Презентация</h3>
+            <h3>📊 Презентация</h3>
             <div class="embed-container">
                 <iframe src="${content.presentation}" allowfullscreen></iframe>
             </div>
@@ -82,9 +74,24 @@ function renderContent(content) {
         </div>`;
     }
 
+    // Отрисовка изображений
+    if (images && images.length > 0) {
+        html += `<div class="content-section">
+            <h3>📸 Материалы урока</h3>
+            <div class="images-gallery">
+                ${images.map(img => `
+                    <div class="image-item">
+                        <img src="data/images/7/${img.src}" alt="${img.alt}" loading="lazy" onclick="openImageModal(this)">
+                        <p class="image-caption">${img.alt}</p>
+                    </div>
+                `).join('')}
+            </div>
+        </div>`;
+    }
+
     if (content.links && content.links.length > 0) {
         html += `<div class="content-section">
-            <h3>🔗 Полезные ссылки</h3>
+            <h3> Полезные ссылки</h3>
             <ul>
                 ${content.links.map(link => `<li><a href="${link.url}" target="_blank" rel="noopener">${link.title}</a></li>`).join('')}
             </ul>
@@ -101,7 +108,22 @@ function renderContent(content) {
     return html || '<p style="color: var(--text-secondary);">Материалы урока будут добавлены позже</p>';
 }
 
+// Открытие/закрытие спойлера
 function toggleSpoiler(header) {
     const spoiler = header.parentElement;
     spoiler.classList.toggle('open');
+}
+
+// Открытие изображения в модальном окне
+function openImageModal(img) {
+    const modal = document.createElement('div');
+    modal.className = 'image-modal';
+    modal.onclick = () => modal.remove();
+    
+    const modalImg = document.createElement('img');
+    modalImg.src = img.src;
+    modalImg.alt = img.alt;
+    
+    modal.appendChild(modalImg);
+    document.body.appendChild(modal);
 }
