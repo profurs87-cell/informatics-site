@@ -66,5 +66,22 @@
         "alt": ""
       }
     ]
+  },
+  {
+    "id": "lesson5",
+    "topic": "Написание линейных программ",
+    "date": "09.10.2026",
+    "icon": "🐍",
+    "content": {
+      "text": "https://forms.gle/kXbhMBiY9Q9twgRi6",
+      "presentation": "https://docs.google.com/presentation/d/1WgwGpCFGE_lJ92DInDWc6Qr5TMvBHG7WExLHWgOPFc0/preview",
+      "homework": "Создать 3 переменные (имя, возраст, город) и вывести их через print()."
+    },
+    "images": [
+      {
+        "src": "",
+        "alt": ""
+      }
+    ]
   }
 ]
