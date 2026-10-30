@@ -83,5 +83,22 @@
         "alt": ""
       }
     ]
+  },
+    {
+    "id": "lesson6",
+    "topic": "Модуль Random",
+    "date": "15.10.2026",
+    "icon": "🐍",
+    "content": {
+      "text": "https://forms.gle/kbseD1nVYt3ZRWYi6",
+      "presentation": "https://docs.google.com/presentation/d/1joC4lOGf6Dr4qxRhAEAkL3GVkvUiCMV129yal4JNBhw/preview",
+      "homework": "Создать 3 переменные (имя, возраст, город) и вывести их через print()."
+    },
+    "images": [
+      {
+        "src": "",
+        "alt": ""
+      }
+    ]
   }
 ]
