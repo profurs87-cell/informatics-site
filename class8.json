@@ -1,0 +1,104 @@
+[
+   {
+    "id": "lesson1",
+    "topic": "Язык Python. Команды ввода данных",
+    "date": "Сентябрь",
+    "icon": "🐍",
+    "content": {
+      "text": "Переменная — это именованная область памяти, в которой хранятся данные. В Python не нужно объявлять тип переменной заранее.",
+      "presentation": "https://docs.google.com/presentation/d/1SukCTdYdFw74SG7i82JngBMCCFtg-iH7nzEuyCTObgM/preview",
+      "homework": "Создать 3 переменные (имя, возраст, город) и вывести их через print()."
+    },
+    "images": [
+      {
+        "src": "lesson2_screen1.jpg",
+        "alt": "Скриншот кода с переменными"
+      }
+    ]
+  },
+  {
+    "id": "lesson2",
+    "topic": "Основные понятия",
+    "date": "11.10.2026",
+    "icon": "🐍",
+    "content": {
+      "text": "Переменная — это именованная область памяти, в которой хранятся данные. В Python не нужно объявлять тип переменной заранее.",
+      "presentation": "https://docs.google.com/presentation/d/1uzsBeAWbYrKxYfLYqX5n5k8i8CP6LHKyOBJTfK0ckxg/preview",
+      "homework": "Создать 3 переменные (имя, возраст, город) и вывести их через print()."
+    },
+    "images": [
+      {
+        "src": "",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "id": "lesson3",
+    "topic": "Строки",
+    "date": "Сентябрь",
+    "icon": "🐍",
+    "content": {
+      "text": "Переменная — это именованная область памяти, в которой хранятся данные. В Python не нужно объявлять тип переменной заранее.",
+      "presentation": "https://docs.google.com/presentation/d/13lt0OoOBR5TL241f8djblMVCUdMRYsvb770nVFyQEi0/preview",
+      "homework": "Создать 3 переменные (имя, возраст, город) и вывести их через print()."
+    },
+    "images": [
+      {
+        "src": "",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "id": "lesson4",
+    "topic": "Написание линейных программ",
+    "date": "05.10.2026",
+    "icon": "🐍",
+    "content": {
+      "text": "https://forms.gle/JoNcba69Jey7bPcL8",
+      "presentation": "https://docs.google.com/presentation/d/1aLBEI1WAm3rlIY3iGbPsQdZQYbFEqBTXJOnaj4nGKIM/preview",
+      "homework": "Создать 3 переменные (имя, возраст, город) и вывести их через print()."
+    },
+    "images": [
+      {
+        "src": "",
+        "alt": ""
+      }
+    ]
+  },
+  {
+    "id": "lesson5",
+    "topic": "Модуль math",
+    "date": "09.10.2026",
+    "icon": "🐍",
+    "content": {
+      "text": "https://forms.gle/kXbhMBiY9Q9twgRi6",
+      "presentation": "https://docs.google.com/presentation/d/1WgwGpCFGE_lJ92DInDWc6Qr5TMvBHG7WExLHWgOPFc0/preview",
+      "homework": "Создать 3 переменные (имя, возраст, город) и вывести их через print()."
+    },
+    "images": [
+      {
+        "src": "",
+        "alt": ""
+      }
+    ]
+  },
+    {
+    "id": "lesson6",
+    "topic": "Модуль Random",
+    "date": "15.10.2026",
+    "icon": "🐍",
+    "content": {
+      "text": "https://forms.gle/kbseD1nVYt3ZRWYi6",
+      "presentation": "https://docs.google.com/presentation/d/1joC4lOGf6Dr4qxRhAEAkL3GVkvUiCMV129yal4JNBhw/preview",
+      "homework": "Создать 3 переменные (имя, возраст, город) и вывести их через print()."
+    },
+    "images": [
+      {
+        "src": "",
+        "alt": ""
+      }
+    ]
+  }
+]
