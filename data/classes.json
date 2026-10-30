@@ -16,7 +16,7 @@
   "8a": {
     "name": "8 класс",
     "login": "class8",
-    "password": "logica$100",
+    "password": "bool100",
     "page": "class8.html",
     "materialsFile": "materials_8.json"
   },
